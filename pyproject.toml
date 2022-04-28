@@ -11,6 +11,8 @@ uvicorn = {extras = ["standard"], version = "^0.17.6"}
 redis = "^4.2.1"
 aioredis = "^2.0.1"
 hiredis = "^2.0.0"
+websocket = "^0.2.1"
+pip = "^22.0.4"
 
 [tool.poetry.dev-dependencies]
 
