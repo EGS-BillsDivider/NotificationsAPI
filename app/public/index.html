@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"
+        integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossOrigin="anonymous">
+        </script>
+    <!-- <base href="."> -->
+    <script type="module" src="socket.js"></script>
+</head>
+
+<body>
+    <p>Current user</p>
+
+    <form id="user_form" action="#">
+        <input type="number" name="uid" id="uid" placeholder="uid" value="1">
+    </form>
+    <button id="user_btn">Change User</button>
+
+    <p>Create channel</p>
+
+    <form id="cr_channel_form" action="#">
+        <input type="text" name="channel" id="cr_channel" placeholder="channel">
+    </form>
+
+    <button id="cr_ch_btn">Create channel</button>
+
+    <p>Join channel</p>
+
+    <form id="jn_channel_form" action="#">
+        <input type="text" name="channel" id="jn_channel" placeholder="channel">
+    </form>
+
+    <button id="jn_ch_btn">Join channel</button>
+
+    <p>Send Notification</p>
+    <form id="form" action="#">
+        <input type="text" name="msg" id="msg" placeholder="text">
+        <input type="text" name="channel" id="nt_channel" placeholder="channel">
+    </form>
+    <button id="submit_bttn">Submit</button>
+
+    <!-- <h1>Push Notifications</h1>
+    <div id="notification_area">
+    </div>
+
+    <h1>All Notifications (pagination)</h1>
+    <form id="all_notificatoĩons_form" action="#">
+        <input type="number" name="msg" id="pageNr" placeholder="pageNr">
+        <input type="number" name="uid" id="resultperpage" placeholder="resultperpage">
+    </form>
+    <button id="submit_pag">Submit</button>
+    <div id="all_notifications">
+    </div> -->
+
+</body>
+
+</html>
