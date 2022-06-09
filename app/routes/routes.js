@@ -2,6 +2,9 @@ const router = require('express').Router();
 var db = require('../db');
 const socket = require("../socketio/socket.js");
 
+router.get('/test', async (req, res) => {
+    res.send('api is here');
+})
 
 //SEND NOTIFICATION
 router.post('/notification', async (req, res) => {
