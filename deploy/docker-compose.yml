@@ -7,9 +7,6 @@ services:
     container_name: db
     image: mysql:8.0.21
     environment:
-      - MYSQL_DATABASE=Notifications
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=root
       - MYSQL_ROOT_PASSWORD=root
     volumes:
       - ../src/db/entry:/docker-entrypoint-initdb.d/:ro
@@ -25,11 +22,5 @@ services:
       dockerfile: deploy/Dockerfile.api
     ports:
       - "3000:3000"
-    environment:
-      - DB_HOST=db
-      - DB_USER=root
-      - DB_PASSWORD=root
-      - DB_NAME=Notifications
-      - DB_PORT= 3306
     stdin_open: true
     tty: true
