@@ -1,4 +1,3 @@
-DROP DATABASE IF EXISTS `Notifications`;
 CREATE DATABASE IF NOT EXISTS `Notifications`;
 
 USE `Notifications`;
@@ -27,6 +26,3 @@ CREATE TABLE NOTIFICATION_QUEUE (
     msg VARCHAR(255),
     PRIMARY KEY(`user_uid`, msg)
 );
-
-INSERT INTO `NOTIFICATION` (`uid` , msg) 
-VALUES("1", "alo")

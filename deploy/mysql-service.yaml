@@ -3,24 +3,23 @@
 apiVersion: apps/v1
 kind: Deployment                               #pra replicar dbs, usar StatefulSet
 metadata:
-  name: notifications-db
-  namespace:  analu          
-  labels:
-    app: notifications-db
+  name: noti
+  namespace:  jpcg          
 spec:
   selector:
     matchLabels:
-      app: notifications-db
+      app: noti
   template:
     metadata:
       labels:
-        app: notifications-db
+        app: noti
     spec:
       containers:
-      - name: notifications-db
-        image: registry.deti:5000/billsdivider/notificationsdb:12062022
+      - name: noti
+        image: registry.deti:5000/billsdivider/notidb:14062022
         ports:
         - containerPort: 3306
+          name: noti
         volumeMounts:
           - name: mysql-persistent-storage
             mountPath: /var/lib/mysql
@@ -32,12 +31,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: notifications-db
-  namespace: analu
+  name: noti
+  namespace: jpcg
 spec:
-  selector:
-    app: notifications-db                       #label dos pods pro service encontrar os pods
   ports:
-    - protocol: TCP
-      port: 3306                                #port of the service os requests vem praqui
+    - port: 3306  
+      protocol: TCP
+      name: noti
+  selector:
+    app: noti                      #label dos pods pro service encontrar os pods                        #port of the service os requests vem praqui
   type: NodePort
