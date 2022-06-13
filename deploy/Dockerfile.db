@@ -1,0 +1,12 @@
+#To build: sudo docker build -t registry.deti:5000/billsdivider/notificationsdb:12062022 -f deploy/Dockerfile.db .
+#To add to registry: sudo docker push registry.deti:5000/billsdivider/notificationsdb:12062022
+
+FROM mysql:8.0.21
+
+LABEL maintainer="Ana Ferreira"
+
+LABEL version="1.0"
+
+ADD src/db/entry/init.sql /docker-entrypoint-initdb.d
+
+EXPOSE 3306

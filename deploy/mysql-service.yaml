@@ -1,0 +1,43 @@
+#deployment e service num ficheiro
+
+apiVersion: apps/v1
+kind: Deployment                               #pra replicar dbs, usar StatefulSet
+metadata:
+  name: notifications-db
+  namespace:  analu          
+  labels:
+    app: notifications-db
+spec:
+  selector:
+    matchLabels:
+      app: notifications-db
+  template:
+    metadata:
+      labels:
+        app: notifications-db
+    spec:
+      containers:
+      - name: notifications-db
+        image: registry.deti:5000/billsdivider/notificationsdb:12062022
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+          - name: mysql-persistent-storage
+            mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pv-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notifications-db
+  namespace: analu
+spec:
+  selector:
+    app: notifications-db                       #label dos pods pro service encontrar os pods
+  ports:
+    - protocol: TCP
+      port: 3306                                #port of the service os requests vem praqui
+  type: NodePort

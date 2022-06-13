@@ -1,0 +1,45 @@
+#deployment e service num ficheiro
+
+apiVersion: apps/v1
+kind: Deployment                               #pra replicar dbs, usar StatefulSet
+metadata:
+  name: notificationsapi-deployment
+  namespace:  analu          
+  labels:
+    app: notifications-api
+spec:
+  replicas: 1                                 #n se deve replicar dbs
+  selector:
+    matchLabels:
+      app: notifications-api
+  template:
+    metadata:
+      labels:
+        app: notifications-api
+    spec:
+      containers:
+      - name: node-api
+        image: registry.deti:5000/billsdivider/notificationsapi:12062022
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notificationsapi-service
+  namespace: analu
+spec:
+  type: NodePort                                #external service type
+  selector:
+    app: notifications-api                      #label dos pods pro service encontrar os pods
+  ports:
+    - protocol: TCP
+      port: 3000                                #port of the service os requests vem praqui
+      targetPort: 3000                          #o serviço redireciona para o port dos pods
+      nodePort: 30100
