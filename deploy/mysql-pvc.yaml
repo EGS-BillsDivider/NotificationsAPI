@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mysql-pvc-analu
-  namespace: jpcg
+  namespace: analu
 spec:
   accessModes:
     - ReadWriteOnce

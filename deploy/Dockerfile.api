@@ -1,5 +1,5 @@
-#To build: sudo docker build -t registry.deti:5000/billsdivider/notificationsapi:12062022 -f deploy/Dockerfile.api .
-#To add to registry: sudo docker push registry.deti:5000/billsdivider/notificationsapi:12062022
+#To build: sudo docker build -t registry.deti:5000/billsdivider/notificationsapi:17062022 -f deploy/Dockerfile.api .
+#To add to registry: sudo docker push registry.deti:5000/billsdivider/notificationsapi:17062022
 
 FROM node
 

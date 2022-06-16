@@ -3,41 +3,35 @@
 apiVersion: apps/v1
 kind: Deployment                               #pra replicar dbs, usar StatefulSet
 metadata:
-  name: notificationsapi-deployment
-  namespace:  analu          
+  name: notiapi-deployment
+  namespace: analu          
   labels:
-    app: notifications-api
+    app: noti-api
 spec:
   replicas: 1                                 #n se deve replicar dbs
   selector:
     matchLabels:
-      app: notifications-api
+      app: noti-api
   template:
     metadata:
       labels:
-        app: notifications-api
+        app: noti-api
     spec:
       containers:
       - name: node-api
-        image: registry.deti:5000/billsdivider/notificationsapi:12062022
+        image: registry.deti:5000/billsdivider/notificationsapi:15062022
         ports:
         - containerPort: 3000
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-secret
-              key: mysql-password
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: notificationsapi-service
+  name: notiapi-service
   namespace: analu
 spec:
   type: NodePort                                #external service type
   selector:
-    app: notifications-api                      #label dos pods pro service encontrar os pods
+    app: noti-api                      #label dos pods pro service encontrar os pods
   ports:
     - protocol: TCP
       port: 3000                                #port of the service os requests vem praqui

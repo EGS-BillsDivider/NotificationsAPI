@@ -3,41 +3,48 @@
 apiVersion: apps/v1
 kind: Deployment                               #pra replicar dbs, usar StatefulSet
 metadata:
-  name: noti
-  namespace:  jpcg          
+  name: noti-db
+  namespace:  analu          
 spec:
   selector:
     matchLabels:
-      app: noti
+      app: noti-db
   template:
     metadata:
       labels:
-        app: noti
+        app: noti-db
     spec:
       containers:
-      - name: noti
+      - name: noti-db
         image: registry.deti:5000/billsdivider/notidb:14062022
         ports:
         - containerPort: 3306
-          name: noti
+          name: noti-db
         volumeMounts:
           - name: mysql-persistent-storage
             mountPath: /var/lib/mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-password
       volumes:
         - name: mysql-persistent-storage
           persistentVolumeClaim:
-            claimName: mysql-pv-claim
+            claimName: mysql-pvc-analu
+      
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: noti
-  namespace: jpcg
+  name: noti-db
+  namespace: analu
 spec:
   ports:
     - port: 3306  
       protocol: TCP
-      name: noti
+      name: noti-db
   selector:
-    app: noti                      #label dos pods pro service encontrar os pods                        #port of the service os requests vem praqui
+    app: noti-db                     #label dos pods pro service encontrar os pods                        #port of the service os requests vem praqui
   type: NodePort
