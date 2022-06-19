@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS`Notifications`;
 CREATE DATABASE IF NOT EXISTS `Notifications`;
 
 USE `Notifications`;

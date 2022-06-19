@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mysql-config
-  namespace: analu
-data:
-  mysql-url: mysql-service
-
-  #é preciso namespace aqui?

@@ -4,7 +4,7 @@ apiVersion: apps/v1
 kind: Deployment                               #pra replicar dbs, usar StatefulSet
 metadata:
   name: noti-db
-  namespace:  analu          
+  namespace:  egs1          
 spec:
   selector:
     matchLabels:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: noti-db
-        image: registry.deti:5000/billsdivider/notidb:14062022
+        image: registry.deti:5000/billsdivider/notidb:19062022
         ports:
         - containerPort: 3306
           name: noti-db
@@ -27,19 +27,19 @@ spec:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom: 
             secretKeyRef:
-              name: mysql-secret
+              name: notidb-secret
               key: mysql-password
       volumes:
         - name: mysql-persistent-storage
           persistentVolumeClaim:
-            claimName: mysql-pvc-analu
+            claimName: noti-pvc-claim
       
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: noti-db
-  namespace: analu
+  namespace: egs1
 spec:
   ports:
     - port: 3306  

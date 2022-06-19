@@ -27,7 +27,9 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static('../public'));
 
-app.get('/favicon.ico', (req, res) => res.sendStatus(204).end());
+app.get('/favicon.ico', (req, res) => {
+    return res.status(204).end()
+});
 
 //Route middleware
 app.use('/', routes);

@@ -1,5 +1,5 @@
-#To build: sudo docker build -t registry.deti:5000/billsdivider/notidb:14062022 -f deploy/Dockerfile.db .
-#To add to registry: sudo docker push registry.deti:5000/billsdivider/notidb:14062022
+#To build: sudo docker build -t registry.deti:5000/billsdivider/notidb:19062022 -f deploy/Dockerfile.db .
+#To add to registry: sudo docker push registry.deti:5000/billsdivider/notidb:19062022
 
 FROM mysql:8.0.21
 
